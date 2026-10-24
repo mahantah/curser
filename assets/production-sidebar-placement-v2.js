@@ -39,16 +39,21 @@
       var rect = head.getBoundingClientRect();
       var bw = switchButton.offsetWidth || 40;
       var bh = switchButton.offsetHeight || 40;
-      var safeTop = 0;
-      try {
-        var cs = getComputedStyle(document.documentElement);
-        var raw = cs.getPropertyValue('env(safe-area-inset-top)');
-        // env() may not resolve via getPropertyValue; fall back below.
-        void raw;
-      } catch (e) { /* ignore */ }
 
-      if (open && rect.width > 2 && rect.height > 2 && !app.classList.contains('hidden')) {
-        // Exact center of the brand/head row — travels with the menubar.
+      // Stay glued to the menubar for the whole open/close transition:
+      // - while open, always follow .sidebar-head (even if still narrow)
+      // - while closing, keep following until the head is too small to host it
+      // Only then dock at the page corner so the control stays reachable.
+      var headVisible =
+        !app.classList.contains('hidden') &&
+        rect.height > 2 &&
+        rect.bottom > 0 &&
+        rect.top < window.innerHeight &&
+        rect.right > 0 &&
+        rect.left < window.innerWidth;
+      var followMenubar = headVisible && (open || rect.width > bw + 24);
+
+      if (followMenubar) {
         var x = rect.left + (rect.width - bw) / 2;
         var y = rect.top + (rect.height - bh) / 2;
         x = clamp(x, 4, window.innerWidth - bw - 4);
@@ -57,7 +62,6 @@
         switchButton.style.setProperty('--gp-sidebar-v2-right', 'auto');
         switchButton.style.setProperty('--gp-sidebar-v2-top', Math.round(y) + 'px');
       } else {
-        // Drawer closed: reachable dock at the page top-end (RTL-friendly).
         var dockTop = 14;
         if (window.visualViewport) {
           dockTop = Math.max(14, Math.round(window.visualViewport.offsetTop + 14));

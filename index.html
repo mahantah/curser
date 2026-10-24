@@ -95,18 +95,24 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
       flex: 0 0 auto;
     }
+    /* Logo left + title right leave an empty center for #gpSidebarSwitch. */
     #app > header .topnav .sidebar-head .logo {
+      order: -1;
       width: 36px;
       height: 36px;
       border-radius: 10px;
       background: linear-gradient(145deg, #f58220, #ffb572);
       box-shadow: 0 6px 14px rgba(245, 130, 32, 0.35);
+      flex: 0 0 auto;
     }
     #app > header .topnav .sidebar-head .title {
       font-size: 15px;
       font-weight: 750;
       letter-spacing: -0.02em;
       color: #fff7ef;
+      flex: 0 1 auto;
+      max-width: calc(100% - 96px);
+      text-align: right;
     }
     #app > header .topnav .nav-links {
       display: flex;
