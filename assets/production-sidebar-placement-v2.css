@@ -16,7 +16,10 @@
   border-radius: 12px !important;
   touch-action: manipulation;
   /* Position transitions disabled — JS pins to live menubar rect each frame. */
-  transition: background .24s, border-color .24s, color .24s !important;
+  transition:
+    background 0.24s,
+    border-color 0.24s,
+    color 0.24s !important;
 }
 
 /* Keep the legacy handler-bound button in the DOM but never in the UI.

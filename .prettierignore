@@ -1,0 +1,8 @@
+node_modules
+dist
+download
+*.zip
+*.apk
+*.aab
+package-lock.json
+.cursor

@@ -1,0 +1,21 @@
+# Demo and pack settings. Production drop-in files stay self-contained
+# so they can be copied onto the live #app without a bundler.
+#
+# mobile_max_px must match the media query in the production CSS/JS.
+
+demo:
+  # TCP port for the local Vite preview.
+  port: 3847
+  # Open sidebar width in the mock shell, pixels.
+  sidebar_width_px: 258
+  # Drawer breakpoint shared with production assets, pixels.
+  mobile_max_px: 760
+
+pack:
+  # Files copied from assets/ into download/ and the zip.
+  files:
+    - production-sidebar-controls-v1.css
+    - production-sidebar-controls-v1.js
+    - production-sidebar-placement-v2.css
+    - production-sidebar-placement-v2.js
+  zip_name: ghadir-sidebar-download.zip

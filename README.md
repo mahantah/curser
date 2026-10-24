@@ -25,6 +25,14 @@ npm install
 npm run dev
 ```
 
+چک کیفیت:
+
+```bash
+npm run check
+```
+
+`assets/` منبع اصلی چهار فایل نصب است. `npm run pack` همان‌ها را به `download/` کپی می‌کند.
+
 ## دانلود اپ اندروید
 
 نسخه **5.4.3.3-r5.9**:

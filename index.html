@@ -1,341 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Ghadir — تست منوبار سایدبار</title>
-  <link rel="stylesheet" href="/assets/production-sidebar-controls-v1.css" />
-  <link rel="stylesheet" href="/assets/production-sidebar-placement-v2.css" />
-  <style>
-    :root {
-      --gp-side: 258px;
-      --ink: #0b2a46;
-      --panel: #0f3558;
-      --sand: #f3eee6;
-      --accent: #f58220;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: "Segoe UI", Tahoma, "Noto Sans Arabic", sans-serif;
-      background:
-        radial-gradient(1200px 600px at 100% -10%, rgba(245, 130, 32, 0.18), transparent 55%),
-        linear-gradient(165deg, #071a2e 0%, #0c2c4d 42%, #123a5c 100%);
-      color: #e8f3ff;
-    }
-    #app {
-      --gp-side: 258px;
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: var(--gp-side) 1fr;
-      transition: grid-template-columns 0.35s ease;
-    }
-    #app.sidebar-collapsed {
-      --gp-side: 0px;
-      grid-template-columns: 0 1fr;
-    }
-    #app > header {
-      grid-column: 1;
-      grid-row: 1 / -1;
-      position: relative;
-      z-index: 40;
-    }
-    #app > header .brand {
-      display: none;
-    }
-    #app > header .nav-toggle,
-    #app > header .desktop-sidebar-open,
-    #app > .desktop-sidebar-open {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
-    }
-    #desktopSidebarOpen {
-      position: fixed;
-      inset: 0 auto auto 0;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-      pointer-events: none;
-    }
-    #app > header .topnav {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: var(--gp-side, 258px);
-      height: 100vh;
-      margin: 0;
-      padding: 0 0 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      background: linear-gradient(180deg, #113857 0%, #0b2a46 100%);
-      border-left: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: -12px 0 28px rgba(4, 22, 43, 0.28);
-      overflow: auto;
-      transition: width 0.35s ease, transform 0.35s ease, opacity 0.28s ease;
-    }
-    #app.sidebar-collapsed > header .topnav {
-      width: 0;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateX(12px);
-      overflow: hidden;
-    }
-    #app > header .topnav .sidebar-head {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 64px;
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      flex: 0 0 auto;
-    }
-    /* Logo left + title right leave an empty center for #gpSidebarSwitch. */
-    #app > header .topnav .sidebar-head .logo {
-      order: -1;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: linear-gradient(145deg, #f58220, #ffb572);
-      box-shadow: 0 6px 14px rgba(245, 130, 32, 0.35);
-      flex: 0 0 auto;
-    }
-    #app > header .topnav .sidebar-head .title {
-      font-size: 15px;
-      font-weight: 750;
-      letter-spacing: -0.02em;
-      color: #fff7ef;
-      flex: 0 1 auto;
-      max-width: calc(100% - 96px);
-      text-align: right;
-    }
-    #app > header .topnav .nav-links {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      padding: 10px 10px 0;
-      flex: 1 1 auto;
-    }
-    #app > header .topnav .nav-links a {
-      color: #d7e8f8;
-      text-decoration: none;
-      padding: 11px 12px;
-      border-radius: 10px;
-      font-size: 14px;
-    }
-    #app > header .topnav .nav-links a:hover,
-    #app > header .topnav .nav-links a[aria-current="page"] {
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-    }
-    #app > header .topnav .userbox {
-      display: none;
-    }
-    main.workspace {
-      grid-column: 2;
-      padding: 28px 28px 48px;
-      min-width: 0;
-    }
-    main.workspace h1 {
-      margin: 0 0 8px;
-      font-size: clamp(1.5rem, 2.4vw, 2rem);
-      font-weight: 780;
-      color: #fff8f0;
-    }
-    main.workspace p {
-      margin: 0 0 18px;
-      max-width: 42rem;
-      line-height: 1.7;
-      color: rgba(232, 243, 255, 0.82);
-    }
-    .hint {
-      display: inline-flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      font-size: 13px;
-    }
-    .install {
-      margin: 22px 0 0;
-      max-width: 42rem;
-      padding: 16px 16px 14px;
-      border-radius: 16px;
-      background: rgba(7, 24, 42, 0.72);
-      border: 1px solid rgba(255, 181, 114, 0.35);
-      box-shadow: 0 12px 28px rgba(4, 22, 43, 0.28);
-    }
-    .install h2 {
-      margin: 0 0 6px;
-      font-size: 1.05rem;
-      color: #ffd7ad;
-    }
-    .install p {
-      margin: 0 0 12px;
-      font-size: 13.5px;
-    }
-    .install-files {
-      list-style: none;
-      margin: 0 0 12px;
-      padding: 0;
-      display: grid;
-      gap: 8px;
-    }
-    .install-files a {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 10px 12px;
-      border-radius: 11px;
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      color: #fff8f0;
-      text-decoration: none;
-      font-size: 13.5px;
-      font-weight: 650;
-    }
-    .install-files a:hover {
-      background: rgba(245, 130, 32, 0.18);
-      border-color: #ffae6c;
-    }
-    .install-files span {
-      color: #9ad5ff;
-      font-size: 12px;
-      font-weight: 600;
-    }
-    .install-zip {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 0 14px;
-      border-radius: 11px;
-      background: #f58220;
-      color: #1a1208;
-      font-weight: 800;
-      text-decoration: none;
-    }
-    .install-zip:hover { filter: brightness(1.06); }
-    .install code {
-      direction: ltr;
-      unicode-bidi: isolate;
-      font-size: 12px;
-      color: #cfe8ff;
-    }
-    @media (max-width: 760px) {
-      #app {
-        grid-template-columns: 1fr;
-      }
-      #app.sidebar-collapsed {
-        grid-template-columns: 1fr;
-      }
-      #app > header .topnav {
-        width: min(86vw, 300px);
-        transform: translateX(105%);
-        opacity: 1;
-        pointer-events: none;
-      }
-      #app > header .topnav.sidebar-open {
-        transform: translateX(0);
-        pointer-events: auto;
-      }
-      #app.sidebar-collapsed > header .topnav {
-        width: min(86vw, 300px);
-        opacity: 1;
-        transform: translateX(105%);
-      }
-      #app.sidebar-collapsed > header .topnav.sidebar-open {
-        transform: translateX(0);
-        pointer-events: auto;
-      }
-      main.workspace {
-        grid-column: 1;
-        padding: 72px 18px 40px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div id="app">
-    <header>
-      <div class="brand">قادیر</div>
-      <button type="button" class="nav-toggle" id="navToggle" aria-label="منوی موبایل">منو</button>
-      <nav class="topnav" id="gpMainNavigation">
-        <div class="sidebar-head">
-          <span class="title">پورتال همکاران</span>
-          <span class="logo" aria-hidden="true"></span>
-          <button type="button" id="desktopSidebarCollapse" class="desktop-sidebar-collapse" aria-label="بستن">×</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Ghadir — تست منوبار سایدبار</title>
+    <link rel="stylesheet" href="/assets/production-sidebar-controls-v1.css" />
+    <link rel="stylesheet" href="/assets/production-sidebar-placement-v2.css" />
+    <link rel="stylesheet" href="/demo/demo.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <div class="brand">قادیر</div>
+        <button type="button" class="nav-toggle" id="navToggle" aria-label="منوی موبایل">
+          منو
+        </button>
+        <nav class="topnav" id="gpMainNavigation">
+          <div class="sidebar-head">
+            <span class="title">پورتال همکاران</span>
+            <span class="logo" aria-hidden="true"></span>
+            <button
+              type="button"
+              id="desktopSidebarCollapse"
+              class="desktop-sidebar-collapse"
+              aria-label="بستن"
+            >
+              ×
+            </button>
+          </div>
+          <div class="nav-links">
+            <a href="#" data-tab="home" aria-current="page">داشبورد</a>
+            <a href="#" data-tab="orders">سفارش‌ها</a>
+            <a href="#" data-tab="reports">گزارش‌ها</a>
+            <a href="#" data-tab="support">پشتیبانی</a>
+          </div>
+          <div class="userbox">
+            <div id="who">سعید غدیری</div>
+            <button type="button" id="changePasswordBtn">تغییر رمز</button>
+            <button type="button" id="logoutbtn">خروج</button>
+          </div>
+          <button type="button" class="sidebar-close" aria-label="بستن">×</button>
+        </nav>
+      </header>
+      <button
+        type="button"
+        id="desktopSidebarOpen"
+        class="desktop-sidebar-open"
+        aria-label="بازکردن منو"
+      >
+        باز
+      </button>
+      <main class="workspace">
+        <h1>تست جابه‌جایی دکمه با منوبار</h1>
+        <p>
+          دکمه سه‌خط باید وسط ردیف برند بماند و هنگام باز/بسته شدن سایدبار دقیقاً همراه منوبار حرکت
+          کند؛ در حالت بسته گوشه بالا در دسترس است.
+        </p>
+        <div class="hint">
+          روی دکمه نارنجی کلیک کنید · عرض پنجره را عوض کنید · در موبایل کشوی منو را باز کنید
         </div>
-        <div class="nav-links">
-          <a href="#" data-tab="home" aria-current="page">داشبورد</a>
-          <a href="#" data-tab="orders">سفارش‌ها</a>
-          <a href="#" data-tab="reports">گزارش‌ها</a>
-          <a href="#" data-tab="support">پشتیبانی</a>
-        </div>
-        <div class="userbox">
-          <div id="who">سعید غدیری</div>
-          <button type="button" id="changePasswordBtn">تغییر رمز</button>
-          <button type="button" id="logoutbtn">خروج</button>
-        </div>
-        <button type="button" class="sidebar-close" aria-label="بستن">×</button>
-      </nav>
-    </header>
-    <button type="button" id="desktopSidebarOpen" class="desktop-sidebar-open" aria-label="بازکردن منو">باز</button>
-    <main class="workspace">
-      <h1>تست جابه‌جایی دکمه با منوبار</h1>
-      <p>دکمه سه‌خط باید وسط ردیف برند بماند و هنگام باز/بسته شدن سایدبار دقیقاً همراه منوبار حرکت کند؛ در حالت بسته گوشه بالا در دسترس است.</p>
-      <div class="hint">روی دکمه نارنجی کلیک کنید · عرض پنجره را عوض کنید · در موبایل کشوی منو را باز کنید</div>
-      <section class="install" aria-labelledby="installTitle">
-        <h2 id="installTitle">فایل‌های نصب</h2>
-        <p>همین ۴ فایل را دانلود کنید و جایگزین مسیر <code>assets/</code> روی سایت کنید. اول controls، بعد placement.</p>
-        <ul class="install-files">
-          <li><a href="/download/production-sidebar-controls-v1.css" download="production-sidebar-controls-v1.css">production-sidebar-controls-v1.css <span>دانلود CSS</span></a></li>
-          <li><a href="/download/production-sidebar-controls-v1.js" download="production-sidebar-controls-v1.js">production-sidebar-controls-v1.js <span>دانلود JS</span></a></li>
-          <li><a href="/download/production-sidebar-placement-v2.css" download="production-sidebar-placement-v2.css">production-sidebar-placement-v2.css <span>دانلود CSS</span></a></li>
-          <li><a href="/download/production-sidebar-placement-v2.js" download="production-sidebar-placement-v2.js">production-sidebar-placement-v2.js <span>دانلود JS</span></a></li>
-        </ul>
-        <a class="install-zip" href="/download/ghadir-sidebar-download.zip" download="ghadir-sidebar-download.zip">دانلود هر ۴ فایل (ZIP)</a>
-      </section>
-    </main>
-  </div>
+        <section class="install" aria-labelledby="installTitle">
+          <h2 id="installTitle">فایل‌های نصب</h2>
+          <p>
+            همین ۴ فایل را دانلود کنید و جایگزین مسیر <code>assets/</code> روی سایت کنید. اول
+            controls، بعد placement.
+          </p>
+          <ul class="install-files">
+            <li>
+              <a
+                href="/download/production-sidebar-controls-v1.css"
+                download="production-sidebar-controls-v1.css"
+                >production-sidebar-controls-v1.css <span>دانلود CSS</span></a
+              >
+            </li>
+            <li>
+              <a
+                href="/download/production-sidebar-controls-v1.js"
+                download="production-sidebar-controls-v1.js"
+                >production-sidebar-controls-v1.js <span>دانلود JS</span></a
+              >
+            </li>
+            <li>
+              <a
+                href="/download/production-sidebar-placement-v2.css"
+                download="production-sidebar-placement-v2.css"
+                >production-sidebar-placement-v2.css <span>دانلود CSS</span></a
+              >
+            </li>
+            <li>
+              <a
+                href="/download/production-sidebar-placement-v2.js"
+                download="production-sidebar-placement-v2.js"
+                >production-sidebar-placement-v2.js <span>دانلود JS</span></a
+              >
+            </li>
+          </ul>
+          <a
+            class="install-zip"
+            href="/download/ghadir-sidebar-download.zip"
+            download="ghadir-sidebar-download.zip"
+            >دانلود هر ۴ فایل (ZIP)</a
+          >
+        </section>
+      </main>
+    </div>
 
-  <script>
-    (function () {
-      var app = document.getElementById("app");
-      var nav = document.querySelector("#app > header .topnav");
-      var mobileBtn = document.getElementById("navToggle");
-      var closeBtn = document.getElementById("desktopSidebarCollapse");
-      var openBtn = document.getElementById("desktopSidebarOpen");
-
-      function isMobile() {
-        return window.matchMedia("(max-width:760px)").matches;
-      }
-
-      mobileBtn.addEventListener("click", function () {
-        nav.classList.toggle("sidebar-open");
-      });
-      closeBtn.addEventListener("click", function () {
-        if (isMobile()) nav.classList.remove("sidebar-open");
-        else app.classList.add("sidebar-collapsed");
-      });
-      openBtn.addEventListener("click", function () {
-        if (isMobile()) nav.classList.add("sidebar-open");
-        else app.classList.remove("sidebar-collapsed");
-      });
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") nav.classList.remove("sidebar-open");
-      });
-    })();
-  </script>
-  <script src="/assets/production-sidebar-controls-v1.js"></script>
-  <script src="/assets/production-sidebar-placement-v2.js"></script>
-</body>
+    <script src="/demo/shell.js"></script>
+    <script src="/assets/production-sidebar-controls-v1.js"></script>
+    <script src="/assets/production-sidebar-placement-v2.js"></script>
+  </body>
 </html>

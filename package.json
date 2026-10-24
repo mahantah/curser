@@ -2,12 +2,27 @@
   "name": "ghadir-sidebar-assets",
   "private": true,
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0 --port 3847",
+    "dev": "vite --host 0.0.0.0",
     "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0 --port 3847"
+    "preview": "vite preview --host 0.0.0.0",
+    "pack": "node scripts/pack-download.mjs",
+    "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck && npm run format:check && node scripts/pack-download.mjs --check"
   },
   "devDependencies": {
-    "vite": "^6.3.5"
+    "@eslint/js": "^9.38.0",
+    "@types/node": "^26.6.5",
+    "eslint": "^9.38.0",
+    "eslint-plugin-jsdoc": "^61.1.5",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3",
+    "vite": "^6.3.5",
+    "yaml": "^2.8.1"
   }
 }
