@@ -1,0 +1,13 @@
+{
+  "name": "ghadir-sidebar-assets",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 3847",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 3847"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  }
+}
