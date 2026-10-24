@@ -1,31 +1,36 @@
-# Ghadir — production sidebar controls
+# Ghadir — فایل‌های نصب منوبار
 
-Drop-in assets for the authenticated partner `#app` shell: animated sidebar switch + placement that keeps the button locked to the menubar while it opens and closes.
-
-## Assets
+چهار فایل آماده نصب این‌جا هستند:
 
 ```
-assets/
+install/
 ├── production-sidebar-controls-v1.css
 ├── production-sidebar-controls-v1.js
 ├── production-sidebar-placement-v2.css
-└── production-sidebar-placement-v2.js
+├── production-sidebar-placement-v2.js
+└── ghadir-sidebar-install.zip
 ```
 
-Load **controls** first, then **placement** (CSS and JS).
+همان نسخه‌ها در `assets/` هم هستند.
 
-## Local demo
+## نصب روی سایت
+
+1. هر چهار فایل را از پوشه `install/` بگیرید (یا ZIP را باز کنید).
+2. جایگزین همین نام‌ها در `assets/` سایت شوید.
+3. در HTML اول **controls** و بعد **placement** را لود کنید:
+
+```html
+<link rel="stylesheet" href="assets/production-sidebar-controls-v1.css" />
+<link rel="stylesheet" href="assets/production-sidebar-placement-v2.css" />
+<script src="assets/production-sidebar-controls-v1.js"></script>
+<script src="assets/production-sidebar-placement-v2.js"></script>
+```
+
+## دمو و دانلود از مرورگر
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open `http://localhost:3847` — mock partner shell to verify the switch tracks the sidebar brand row.
-
-## Behavior
-
-- Reuses existing `#desktopSidebarCollapse`, `#desktopSidebarOpen`, and `.nav-toggle` handlers.
-- While the menu is open, `#gpSidebarSwitch` is centered on `.sidebar-head` and tracks its live `getBoundingClientRect` during width/transform transitions.
-- While closed, the same control docks at the top-end corner so the menu can be reopened.
-- Account `.userbox` is moved into the sidebar footer without changing auth wiring.
+صفحه `http://localhost:3847` لینک دانلود هر فایل و ZIP را نشان می‌دهد.

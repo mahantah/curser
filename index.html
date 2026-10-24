@@ -163,6 +163,73 @@
       border: 1px solid rgba(255, 255, 255, 0.14);
       font-size: 13px;
     }
+    .install {
+      margin: 22px 0 0;
+      max-width: 42rem;
+      padding: 16px 16px 14px;
+      border-radius: 16px;
+      background: rgba(7, 24, 42, 0.72);
+      border: 1px solid rgba(255, 181, 114, 0.35);
+      box-shadow: 0 12px 28px rgba(4, 22, 43, 0.28);
+    }
+    .install h2 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+      color: #ffd7ad;
+    }
+    .install p {
+      margin: 0 0 12px;
+      font-size: 13.5px;
+    }
+    .install-files {
+      list-style: none;
+      margin: 0 0 12px;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+    .install-files a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #fff8f0;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 650;
+    }
+    .install-files a:hover {
+      background: rgba(245, 130, 32, 0.18);
+      border-color: #ffae6c;
+    }
+    .install-files span {
+      color: #9ad5ff;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .install-zip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 11px;
+      background: #f58220;
+      color: #1a1208;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .install-zip:hover { filter: brightness(1.06); }
+    .install code {
+      direction: ltr;
+      unicode-bidi: isolate;
+      font-size: 12px;
+      color: #cfe8ff;
+    }
     @media (max-width: 760px) {
       #app {
         grid-template-columns: 1fr;
@@ -226,6 +293,17 @@
       <h1>تست جابه‌جایی دکمه با منوبار</h1>
       <p>دکمه سه‌خط باید وسط ردیف برند بماند و هنگام باز/بسته شدن سایدبار دقیقاً همراه منوبار حرکت کند؛ در حالت بسته گوشه بالا در دسترس است.</p>
       <div class="hint">روی دکمه نارنجی کلیک کنید · عرض پنجره را عوض کنید · در موبایل کشوی منو را باز کنید</div>
+      <section class="install" aria-labelledby="installTitle">
+        <h2 id="installTitle">فایل‌های نصب</h2>
+        <p>همین ۴ فایل را دانلود کنید و جایگزین مسیر <code>assets/</code> روی سایت کنید. اول controls، بعد placement.</p>
+        <ul class="install-files">
+          <li><a href="/install/production-sidebar-controls-v1.css" download="production-sidebar-controls-v1.css">production-sidebar-controls-v1.css <span>دانلود CSS</span></a></li>
+          <li><a href="/install/production-sidebar-controls-v1.js" download="production-sidebar-controls-v1.js">production-sidebar-controls-v1.js <span>دانلود JS</span></a></li>
+          <li><a href="/install/production-sidebar-placement-v2.css" download="production-sidebar-placement-v2.css">production-sidebar-placement-v2.css <span>دانلود CSS</span></a></li>
+          <li><a href="/install/production-sidebar-placement-v2.js" download="production-sidebar-placement-v2.js">production-sidebar-placement-v2.js <span>دانلود JS</span></a></li>
+        </ul>
+        <a class="install-zip" href="/install/ghadir-sidebar-install.zip" download="ghadir-sidebar-install.zip">دانلود هر ۴ فایل (ZIP)</a>
+      </section>
     </main>
   </div>
 
