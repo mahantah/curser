@@ -1,36 +1,26 @@
-# Ghadir — فایل‌های نصب منوبار
+# Ghadir — منوبار سایدبار
 
-چهار فایل آماده نصب این‌جا هستند:
+پوشه دانلود روی گیت‌هاب:
 
-```
-install/
-├── production-sidebar-controls-v1.css
-├── production-sidebar-controls-v1.js
-├── production-sidebar-placement-v2.css
-├── production-sidebar-placement-v2.js
-└── ghadir-sidebar-install.zip
-```
+**[download/](./download/)**
 
-همان نسخه‌ها در `assets/` هم هستند.
+داخلش این فایل‌هاست:
 
-## نصب روی سایت
+- `production-sidebar-controls-v1.css`
+- `production-sidebar-controls-v1.js`
+- `production-sidebar-placement-v2.css`
+- `production-sidebar-placement-v2.js`
+- `ghadir-sidebar-download.zip`
 
-1. هر چهار فایل را از پوشه `install/` بگیرید (یا ZIP را باز کنید).
-2. جایگزین همین نام‌ها در `assets/` سایت شوید.
-3. در HTML اول **controls** و بعد **placement** را لود کنید:
+روی گیت‌هاب وارد `download` شوید و `ghadir-sidebar-download.zip` را با **Download raw file** بگیرید.
 
-```html
-<link rel="stylesheet" href="assets/production-sidebar-controls-v1.css" />
-<link rel="stylesheet" href="assets/production-sidebar-placement-v2.css" />
-<script src="assets/production-sidebar-controls-v1.js"></script>
-<script src="assets/production-sidebar-placement-v2.js"></script>
-```
+## نصب
 
-## دمو و دانلود از مرورگر
+جایگزین همین نام‌ها در `assets/` سایت. اول controls، بعد placement.
+
+## دمو
 
 ```bash
 npm install
 npm run dev
 ```
-
-صفحه `http://localhost:3847` لینک دانلود هر فایل و ZIP را نشان می‌دهد.
