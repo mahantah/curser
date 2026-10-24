@@ -24,3 +24,17 @@
 npm install
 npm run dev
 ```
+
+
+## دانلود اپ اندروید
+
+نسخه **5.4.3.3-r5.9**:
+
+**[download/android/5.4.3.3-r5.9/](./download/android/5.4.3.3-r5.9/)**
+
+- پرتال: `GhadirPartner-5.4.3.3-r5.9-portal-release.apk`
+- اتوماسیون: `GhadirAutomation-5.4.3.3-r5.9-release.apk`
+
+روی گیت‌هاب فایل را باز کنید و **Download raw file** را بزنید.
+
+لینک مستقیم پرتال: https://github.com/mahantah/curser/raw/main/download/android/5.4.3.3-r5.9/GhadirPartner-5.4.3.3-r5.9-portal-release.apk
