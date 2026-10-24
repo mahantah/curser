@@ -24,3 +24,12 @@
 npm install
 npm run dev
 ```
+
+## Clean-code skill
+
+قوانین کدنویسی ایجنت از [SinaFtpAi/clean-code-skill](https://github.com/SinaFtpAi/clean-code-skill) اینجاست:
+
+- `.cursor/skills/clean-code/SKILL.md`
+- `AGENTS.md`
+
+در Cursor بگویید «این ریپو را تمیز کن» یا همان قوانین موقع هر تغییر اعمال می‌شود.
