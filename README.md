@@ -35,16 +35,17 @@ npm run check
 
 ## دانلود اپ اندروید
 
-نسخه **5.4.3.3-r5.9**:
+نسخه **5.4.3.3-r5.10**:
 
-**[download/android/5.4.3.3-r5.9/](./download/android/5.4.3.3-r5.9/)**
+**[download/android/5.4.3.3-r5.10/](./download/android/5.4.3.3-r5.10/)**
 
-- پرتال: `GhadirPartner-5.4.3.3-r5.9-portal-release.apk`
-- اتوماسیون: `GhadirAutomation-5.4.3.3-r5.9-release.apk`
+- پرتال: `GhadirPartner-5.4.3.3-r5.10-portal-release.apk`
+- اتوماسیون: `GhadirAutomation-5.4.3.3-r5.10-release.apk`
 
 روی گیت‌هاب فایل را باز کنید و **Download raw file** را بزنید.
 
-لینک مستقیم پرتال: https://github.com/mahantah/curser/raw/main/download/android/5.4.3.3-r5.9/GhadirPartner-5.4.3.3-r5.9-portal-release.apk
+لینک مستقیم پرتال: https://github.com/mahantah/curser/raw/main/download/android/5.4.3.3-r5.10/GhadirPartner-5.4.3.3-r5.10-portal-release.apk
+لینک مستقیم اتوماسیون: https://github.com/mahantah/curser/raw/main/download/android/5.4.3.3-r5.10/GhadirAutomation-5.4.3.3-r5.10-release.apk
 
 ## Clean-code skill
 
