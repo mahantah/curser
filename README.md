@@ -54,3 +54,5 @@ npm run check
 - `AGENTS.md`
 
 در Cursor بگویید «این ریپو را تمیز کن» یا همان قوانین موقع هر تغییر اعمال می‌شود.
+
+برای ChatGPT فایل `.cursor/skills/clean-code/CHATGPT.md` را ببینید و متن کوتاه را در Custom instructions یا Project بچسبانید.

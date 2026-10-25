@@ -7,3 +7,5 @@ This Cursor skill is adapted from:
 - License: MIT (see `LICENSE` in this folder)
 
 Original package: Claude Code skill + plugin. This copy lives at `.cursor/skills/clean-code/` so Cursor agents in this repo can follow the same rules.
+
+For ChatGPT, paste or upload `CHATGPT.md` — see that file.
